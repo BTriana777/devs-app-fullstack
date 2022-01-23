@@ -1,0 +1,46 @@
+@import url('http://fonts.cdnfonts.com/css/silkscreen');
+body{
+    background-color: #2E132C;
+}
+.login-container{
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100%;
+}
+.login-left-container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+.login-left-container img:nth-child(2){
+    margin-top: 35px;
+}
+
+.login-right-container{
+    width: 100%;
+}
+.login-text-container{
+    align-items: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 433px;
+}
+.login-text-container h1{
+    font-weight: bold;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Silkscreen', sans-serif;
+    letter-spacing: -0.333333px;
+    margin-bottom: 37px;
+}
+.login-text-container p:nth-child(2){
+    font-weight: 450;
+    font-size: 24px;
+    line-height: 31px;
+    margin-bottom: 37px;
+}
