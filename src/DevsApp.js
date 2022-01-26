@@ -1,12 +1,10 @@
 import React from 'react';
-import { LoginScreen } from './components/auth/LoginScreen';
+import { AppRouter } from './routers/AppRouter';
 import './styles/devsApp.css'
 
 
 export const DevsApp = () => {
   return( 
-    <>
-      <LoginScreen />
-    </>
+     <AppRouter />
   );
 };

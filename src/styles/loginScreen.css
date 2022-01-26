@@ -38,9 +38,52 @@ body{
     letter-spacing: -0.333333px;
     margin-bottom: 37px;
 }
-.login-text-container p:nth-child(2){
+.login-text-p{
     font-weight: 450;
     font-size: 24px;
     line-height: 31px;
     margin-bottom: 37px;
+}
+
+
+.google-btn {
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 42px;
+    background-color: #4285f4;
+    border-radius: 2px;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+
+    transition: box-shadow .3s ease;
+}
+.google-btn:hover {
+    box-shadow: 0 0 6px #4285f4;
+}
+.google-btn:active {
+    background: #1669f2;
+}
+.google-icon-wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 2px;
+    background-color: #fff;
+}
+.google-icon {
+    width: 20px;
+    height: 20px;
+}
+.btn-text {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    font-size: 24px;
+    font-weight: bold;
+    justify-content: center;
+    height: 42px;
+    width: 90%;
 }
