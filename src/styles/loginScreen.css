@@ -14,14 +14,14 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
-}
-.login-left-container img:nth-child(2){
-    margin-top: 35px;
+    width: 50%;
 }
 
 .login-right-container{
-    width: 100%;
+    width: 50%;
+}
+.login-img-text{
+    margin-top: 35px;
 }
 .login-text-container{
     align-items: center;

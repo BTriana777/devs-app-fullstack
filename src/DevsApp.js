@@ -9,6 +9,7 @@ export const DevsApp = () => {
   const init = {
     name: '',
     uid: '',
+    color: '',
     logged: false
   }
 

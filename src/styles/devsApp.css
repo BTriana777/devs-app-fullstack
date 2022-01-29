@@ -8,3 +8,12 @@
 body{
     font-family: 'Fira Code', monospace;
 }
+.text-devs-beta{
+    text-align: center;
+    color: #60265B;
+    font-size: 18px;
+    margin-top: 140px;
+}
+.text-devs-beta span{
+    color: #f50d5a;
+}

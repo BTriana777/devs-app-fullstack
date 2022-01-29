@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 export const LoginScreen = () => {
   
   const navigate = useNavigate();
-  const { user, setUser} = useContext(AuthContext);
+  const { setUser} = useContext(AuthContext);
 
   useEffect(() => {
 
@@ -25,13 +25,12 @@ export const LoginScreen = () => {
     signInWithPopup(auth, provider)
     .then(({ user }) => {
       setUser({
-        name: user.displayName,
         uid: user.uid,
         logged: true
       })
 
-      // navigate('/welcome',
-      // { replace: true})
+      navigate('/welcome',
+      { replace: true})
     });
   }
 
@@ -39,7 +38,7 @@ export const LoginScreen = () => {
       <div className='login-container'>
           <div className='login-left-container'>
             <img src='./img/logo.png' alt='logo'/>
-            <img src='./img/letterlogo.png' alt='logo'/>
+            <img className='login-img-text' src='./img/letterlogo.png' alt='logo'/>
           </div>
           <div className='login-right-container'>
             <div className='login-text-container'>
@@ -58,7 +57,7 @@ export const LoginScreen = () => {
                 </div>
               </div>
               
-              <p>© 2020 Devs_United - <span>BETA</span></p>
+              <p className='text-devs-beta'>© 2020 Devs_United - <span>BETA</span></p>
             </div>
           </div>
       </div>
