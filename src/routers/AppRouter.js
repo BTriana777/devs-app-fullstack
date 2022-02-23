@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { LoginScreen } from '../components/auth/LoginScreen';
+import { HomeScreen } from '../components/home/HomeScreen';
 import { WelcomeScreen } from '../components/welcome/WelcomeScreen';
 
 export const AppRouter = () => {
@@ -9,6 +10,7 @@ export const AppRouter = () => {
         <Routes>
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/welcome" element={<WelcomeScreen />} />
+        <Route path='/' element={<HomeScreen />} />
       </Routes>
     </BrowserRouter>
   )

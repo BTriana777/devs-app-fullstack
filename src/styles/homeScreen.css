@@ -1,0 +1,88 @@
+@import url('http://fonts.cdnfonts.com/css/silkscreen');
+.home-main-container{
+    display: flex;
+    flex-direction: column;
+}
+.home-header-container{
+    display: flex;
+    width: 40%;
+    height: 52px;
+    align-self: center;
+    justify-content: space-between;
+    align-items: center;
+}
+.img-header{
+    width: 33px;
+    height: 33px;
+    border-radius: 14px;
+}
+.logo-header{
+    width: 45px;
+    height: 27px;
+    margin-left: 12%;
+}
+.letter-header{
+    height: 14px;
+}
+
+.home-back{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 218px;
+    background: #150714;
+}
+.form-container{
+    display: flex;
+    width: 40%;
+}
+.form-container img{
+    width: 56px;
+    height: 56px;
+    border-radius: 26px;
+    margin: 26px 17px 0 0;
+}
+.home-text-button-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 26px;
+    width: 87.5%;
+}
+.home-text-button-container textarea{
+    height: 113px;
+    background: #2F112D;
+    border: none;
+    font-size: 20px;
+    color: #914D8B;
+    text-align: start;
+    resize: none;
+    width: 100%;
+    padding: 7px;
+}
+.home-text-button-container textarea:focus{
+    outline: none;
+}
+.home-text-button-container textarea::placeholder{
+    color: #914D8B;
+}
+.input-bar{
+    height: 2px;
+    background-color: #00DA76;
+    align-self: flex-start;
+}
+.home-text-button-container span{
+    font-weight: 450;
+    font-size: 16px;
+    color: #F50D5A;
+    margin-top: 6px;
+}
+.home-text-button-container button{
+    font-family: Silkscreen;
+    font-weight: bold;
+    font-size: 20px;
+    background: #2F112D;
+    border: none;
+    padding: 8px 20px;
+    margin-top: 6px;
+}
