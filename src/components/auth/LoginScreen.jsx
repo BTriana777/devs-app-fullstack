@@ -10,14 +10,14 @@ export const LoginScreen = () => {
   const navigate = useNavigate();
   const { setUser} = useContext(AuthContext);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const auth = getAuth();
-        onAuthStateChanged(auth, (user) =>{
-            console.log(user);
-        })
+  //   const auth = getAuth();
+  //       onAuthStateChanged(auth, (user) =>{
+  //           console.log(user);
+  //       })
   
-  }, []);
+  // }, []);
   
 
   const startGoogleLogin = () => {

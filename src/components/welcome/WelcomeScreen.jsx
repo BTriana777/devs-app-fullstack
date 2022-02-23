@@ -1,9 +1,12 @@
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import '../../styles/welcomeScreen.css'
 import { AuthContext } from '../auth/AuthContext';
 
 export const WelcomeScreen = () => {
+
+  const navigate = useNavigate();
   const initialColors = {
     red: false,
     orange: false,
@@ -47,6 +50,8 @@ export const WelcomeScreen = () => {
       name: textValue,
       color: color
     })
+    navigate('/',
+      {replace: true})
   }
 
   return (

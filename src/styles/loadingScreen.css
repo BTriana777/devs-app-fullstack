@@ -1,0 +1,15 @@
+.loading-main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.loading-main-container img:first-child{
+    width: auto
+}
+.loading-main-container img:last-child{
+    width: auto;
+    margin-top: 22px;
+}
+

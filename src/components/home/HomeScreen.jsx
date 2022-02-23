@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import '../../styles/homeScreen.css'
+import { AuthContext } from '../auth/AuthContext'
 
 export const HomeScreen = () => {
+  const {user} = useContext(AuthContext)
   const [form, setForm] = useState("")
   const [barProgress, setbarProgress] = useState(0)
 
@@ -15,7 +17,12 @@ export const HomeScreen = () => {
   return (
     <div className='home-main-container'>
         <div className='home-header-container'>
-            <img className='img-header' src="./img/ornacia.png" alt="./img/ornacia" />
+            <img 
+              className='img-header' 
+              src="./img/ornacia.png" 
+              alt="./img/ornacia"
+              style={{borderColor: user.color}}
+            />
             <img className='logo-header' src="./img/logo.png" alt="./img/logo" />
             <img className='letter-header' src="./img/letterlogo.png" alt="./img/letterlogo" />
         </div>
