@@ -7,6 +7,8 @@ import { getAuth, onAuthStateChanged } from '@firebase/auth';
 import { AuthContext } from '../components/auth/AuthContext';
 import { LoadingScreen } from '../components/loading/LoadingScreen';
 import { ProfileScreen } from '../components/profile/ProfileScreen';
+import { PublicRoute } from './PublicRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 export const AppRouter = () => {
   const {user, setUser} = useContext(AuthContext)
@@ -38,10 +40,22 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
         <Routes>
-        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/login" element={
+          <PublicRoute isAuth={user.logged}>
+            <LoginScreen />
+          </PublicRoute>
+        } />
         <Route path="/welcome" element={<WelcomeScreen />} />
-        <Route path='/profile' element={<ProfileScreen />} />
-        <Route path='/' element={<HomeScreen />} />
+        <Route path='/profile' element={
+          <PrivateRoute isAuth={user.logged}>
+            <ProfileScreen />
+          </PrivateRoute>
+        } />
+        <Route path='/' element={
+          <PrivateRoute isAuth={user.logged}>
+            <HomeScreen />
+          </PrivateRoute>
+        } />
       </Routes>
     </BrowserRouter>
   )

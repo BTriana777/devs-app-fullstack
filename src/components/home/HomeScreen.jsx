@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 import '../../styles/homeScreen.css'
 import { AuthContext } from '../auth/AuthContext'
 
 export const HomeScreen = () => {
+  const navigate = useNavigate();
   const {user} = useContext(AuthContext)
   const [form, setForm] = useState("")
   const [barProgress, setbarProgress] = useState(0)
@@ -11,6 +13,10 @@ export const HomeScreen = () => {
   const handelInputChange = ({target}) => {
     setForm(target.value);
     setbarProgress(target.value.length/2);
+  }
+  const handleClickProfile = () =>{
+    navigate('/profile',
+      {replace: true})
   }
 
   //Todo: hacer borde de color que escoja el usuario
@@ -22,6 +28,7 @@ export const HomeScreen = () => {
               src="./img/ornacia.png" 
               alt="./img/ornacia"
               style={{borderColor: user.color}}
+              onClick={handleClickProfile}
             />
             <img className='logo-header' src="./img/logo.png" alt="./img/logo" />
             <img className='letter-header' src="./img/letterlogo.png" alt="./img/letterlogo" />
