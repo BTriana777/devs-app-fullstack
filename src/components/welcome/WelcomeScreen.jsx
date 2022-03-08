@@ -1,11 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import {db} from '../../firebase/firebase'
+import { setDoc , doc  } from "firebase/firestore";
+import { getAuth } from '@firebase/auth';
+
 import '../../styles/welcomeScreen.css'
 import { AuthContext } from '../auth/AuthContext';
 
 export const WelcomeScreen = () => {
-
+  const {user, setUser} = useContext(AuthContext);
   const navigate = useNavigate();
   const initialColors = {
     red: false,
@@ -19,8 +23,6 @@ export const WelcomeScreen = () => {
   const [colorClass, setColorClass] = useState(initialColors);
   const [textValue, setTextValue] = useState('');
 
-  const {user, setUser} = useContext(AuthContext);
-
   const handleClickBox = ({target}) => {
     setColorClass({
       ...initialColors,
@@ -30,7 +32,7 @@ export const WelcomeScreen = () => {
   const handleTextChange = ({target}) => {
     setTextValue(target.value)
   }
-  const handleClickBtn = () => {
+  const handleClickBtn = async() => {
     let color = ''
     if(colorClass.red){
       color = '#F50D5A'
@@ -50,6 +52,15 @@ export const WelcomeScreen = () => {
       name: textValue,
       color: color
     })
+    try{
+      const {uid} = getAuth().currentUser;
+      await setDoc(doc(db, "users", `${uid}`), {
+        name: textValue,
+        color: color,
+      });
+    } catch (e) {
+      console.error("Error", e);
+    }
     navigate('/',
       {replace: true})
   }
@@ -57,8 +68,8 @@ export const WelcomeScreen = () => {
   return (
     <div className='welcome-container'>
       <div className='welcome-left-container'>
-        <img src='./img/logo.png' alt='logo'/>
-        <img src='./img/letterlogo.png' alt='logo'/>
+        <img src='../img/logo.png' alt='logo'/>
+        <img src='../img/letterlogo.png' alt='logo'/>
       </div>
       <div className='welcome-right-container'>
         <div className='welcome-container-right-all'>

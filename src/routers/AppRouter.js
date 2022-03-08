@@ -1,14 +1,16 @@
 import React, {useContext, useEffect, useState} from 'react';
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { LoginScreen } from '../components/auth/LoginScreen';
-import { HomeScreen } from '../components/home/HomeScreen';
-import { WelcomeScreen } from '../components/welcome/WelcomeScreen';
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
+
 import { AuthContext } from '../components/auth/AuthContext';
+import { HomeScreen } from '../components/home/HomeScreen';
 import { LoadingScreen } from '../components/loading/LoadingScreen';
 import { ProfileScreen } from '../components/profile/ProfileScreen';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
+import { LoginScreen } from '../components/auth/LoginScreen';
+import { WelcomeScreen } from '../components/welcome/WelcomeScreen';
 
 export const AppRouter = () => {
   const {user, setUser} = useContext(AuthContext)
@@ -40,12 +42,6 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
         <Routes>
-        <Route path="/login" element={
-          <PublicRoute isAuth={user.logged}>
-            <LoginScreen />
-          </PublicRoute>
-        } />
-        <Route path="/welcome" element={<WelcomeScreen />} />
         <Route path='/profile' element={
           <PrivateRoute isAuth={user.logged}>
             <ProfileScreen />
@@ -56,6 +52,14 @@ export const AppRouter = () => {
             <HomeScreen />
           </PrivateRoute>
         } />
+        <Route path='/welcome' element={<WelcomeScreen />} />
+
+        <Route path="/login" element={
+          <PublicRoute isAuth={user.logged}>
+            <LoginScreen setChecking={setChecking} />
+          </PublicRoute>
+        } />
+        <Route path='*' element={<Navigate to='/' />}/>
       </Routes>
     </BrowserRouter>
   )

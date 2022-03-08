@@ -44,16 +44,18 @@ header{
 }
 .profile-img-name-container{
     display: flex;
-    height: 280.61px;
+    height: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-bottom: 3px solid #60265B;
 }
 .profile-img-name-container img{
     width: 134px;
     height: 134px;
     border-radius: 70px;
     border: 4px solid;
+    margin-top: 22px;
 }
 .box-username{
     font-family: Silkscreen;
@@ -64,12 +66,28 @@ header{
     padding: 2px;
     margin-top: 10px;
 }
-.box-username::after{
-    display: block;
-    position: fixed;
-    content: "";
-    width: 15px;
-    height: 4px;
-    margin-right: 10px;
-    background-color: #8b3f86;
+
+.profile-post-favorites-container{
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+    color: #60265B;
+    margin-top: 30px;
+}
+.btn-profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 46px;
+    width: 50%; 
+    font-family: Silkscreen;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-active{
+    background-color: #60265B;
+    color: #150714;
 }

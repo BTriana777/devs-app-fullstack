@@ -1,14 +1,55 @@
-import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-
-import '../../styles/homeScreen.css'
+import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../auth/AuthContext'
 
+import {db} from '../../firebase/firebase'
+import { getAuth } from '@firebase/auth';
+import { addDoc, collection, getDocs, query  } from "firebase/firestore";
+
+import { useNavigate } from 'react-router-dom';
+import '../../styles/homeScreen.css'
+  
 export const HomeScreen = () => {
   const navigate = useNavigate();
   const {user} = useContext(AuthContext)
   const [form, setForm] = useState("")
   const [barProgress, setbarProgress] = useState(0)
+  const [dataPost, setDataPost] = useState([]);
+  
+  //funcion para traer post
+  useEffect(() => {
+    const getPost = async() => {
+      let dataArray = [];
+      const docSnap = await getDocs(collection(db, "post"));
+      docSnap.forEach((doc) => {
+        dataArray.push([doc.data()])
+      });
+      setDataPost(dataArray);
+    }
+    getPost();
+  }, [setDataPost])
+  console.log(dataPost);
+  
+
+  //Fucnion para agregar post
+  const handleAddPost = async(e) => {
+    e.preventDefault()
+    const {uid} = getAuth().currentUser;
+    try{
+      const docRef = await addDoc(collection(db, "post"), {
+        color: user.color,
+        name: user.name,
+        content: form,
+        user: uid,
+        date: new Date().getTime(),
+        like: []
+      });
+
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+    setForm('');
+  }
 
   const handelInputChange = ({target}) => {
     setForm(target.value);
@@ -30,13 +71,13 @@ export const HomeScreen = () => {
               style={{borderColor: user.color}}
               onClick={handleClickProfile}
             />
-            <img className='logo-header' src="./img/logo.png" alt="./img/logo" />
+            <img className='logo-header' src="./img/logo.png" alt="./img/logo"/>
             <img className='letter-header' src="./img/letterlogo.png" alt="./img/letterlogo" />
         </div>
         <div className='home-back'>
           <div className='form-container'>
             <img src="./img/ornacia.png" alt="./img/ornacia.png" />
-            <form className='home-text-button-container'>
+            <form onSubmit={handleAddPost} className='home-text-button-container'>
               <textarea 
                 type="text" 
                 maxLength={200} 
@@ -49,7 +90,7 @@ export const HomeScreen = () => {
                 style={{width: barProgress+'%'}}
               ></div>
               <span>200 max.</span>
-              <button>POST</button>
+              <button onClick={handleAddPost}>POST</button>
             </form>
           </div>
         </div>

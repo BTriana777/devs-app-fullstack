@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Navigate } from 'react-router';
+import { AuthContext } from '../components/auth/AuthContext';
  
  
 export const PublicRoute = ({isAuth,  children }) => {
-    return isAuth ? <Navigate to="/" /> : children;
+    const {user} = useContext(AuthContext)
+    console.log(user.name? 'true' : 'false');
+    // ( user.name? <Navigate to="/" /> : <Navigate to='/auth/welcome' />)
+    return isAuth ? ( user.name? <Navigate to="/" /> : <Navigate to='/welcome' />) : children;
 };
  
 PublicRoute.propTypes = {

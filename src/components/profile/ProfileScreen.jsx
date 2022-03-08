@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import '../../styles/profileScreen.css'
 import { AuthContext } from '../auth/AuthContext'
 import { getAuth, signOut } from "firebase/auth";
@@ -7,12 +7,18 @@ import { useNavigate } from 'react-router-dom';
 export const ProfileScreen = () => {
     const navigate = useNavigate()
     const {user, setUser} = useContext(AuthContext)
+    const [classBtn, setClassBtn] = useState({
+        post: true,
+        favo: false
+    }) 
 
     const handleLogout = async() => {
         const auth = getAuth();
         await signOut(auth);
         setUser({
-            ...user,
+            name: '',
+            uid: '',
+            color: '',
             logged: false
         })
     }
@@ -20,6 +26,17 @@ export const ProfileScreen = () => {
         navigate('/', {
             replace: true
         })
+    }
+    const handleChanceClass = ({target}) => {
+        const btnClass = {
+            post: false,
+            favo: false
+        }
+        setClassBtn({
+            ...btnClass,
+            [target.id]: true
+        })
+
     }
   return (
     <div className='profile-main-container'>
@@ -49,11 +66,11 @@ export const ProfileScreen = () => {
                 <p>{user.name.toUpperCase()}</p>
             </div>
             <div className='profile-post-favorites-container'>
-                <div className='post-container'>
+                <div id='post' className={classBtn.post? 'btn-profile btn-active' : 'btn-profile'} onClick={handleChanceClass}>
                     <span>POST</span>
                 </div>
-                <div className='favorites-container'>
-                    <span>FAVORITES</span>
+                <div id='favo' className={classBtn.favo? 'btn-profile btn-active' : 'btn-profile'} onClick={handleChanceClass}>
+                    FAVORITES
                 </div>
             </div>
         </div>

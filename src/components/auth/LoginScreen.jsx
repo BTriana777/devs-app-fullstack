@@ -1,14 +1,16 @@
 import React, { useContext, useEffect } from 'react';
 import { getAuth, signInWithPopup, onAuthStateChanged } from "firebase/auth";
-import { provider } from '../../firebase/firebase';
+import { provider, db } from '../../firebase/firebase';
+import {doc, getDoc  } from "firebase/firestore";
+
 import '../../styles/loginScreen.css'
 import { AuthContext } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-export const LoginScreen = () => {
+export const LoginScreen = ({setChecking}) => {
   
   const navigate = useNavigate();
-  const { setUser} = useContext(AuthContext);
+  const {user, setUser} = useContext(AuthContext);
 
   // useEffect(() => {
 
@@ -19,26 +21,45 @@ export const LoginScreen = () => {
   
   // }, []);
   
-
-  const startGoogleLogin = () => {
-    const auth = getAuth();
-    signInWithPopup(auth, provider)
-    .then(({ user }) => {
+  const changeUser = (docSnap, singIn) => {
+    if(docSnap.data()?.name){
+       setUser({
+        ...user,
+        name: docSnap.data().name,
+        color: docSnap.data().color,
+        uid: singIn.user.uid,
+      });
+    } else {
       setUser({
-        uid: user.uid,
-        logged: true
+        ...user,
+        uid: singIn.user.uid,
       })
+    }
+  }
 
-      navigate('/welcome',
-      { replace: true})
-    });
+  const startGoogleLogin = async() => {
+    const auth = getAuth();
+    setChecking(true);
+    try {
+      const singIn = await signInWithPopup(auth, provider)
+      const docSnap = await getDoc(doc(db, "users", `${auth.currentUser.uid}`))
+      changeUser(docSnap, singIn)
+      .then(() => {
+      setUser({
+        ...user,
+        logged: true
+      })})
+    } catch (error) {
+      console.error("idk", error);
+    }
+    setChecking(false)
   }
 
   return(
       <div className='login-container'>
           <div className='login-left-container'>
-            <img src='./img/logo.png' alt='logo'/>
-            <img className='login-img-text' src='./img/letterlogo.png' alt='logo'/>
+            <img src='../img/logo.png' alt='logo'/>
+            <img className='login-img-text' src='../img/letterlogo.png' alt='logo'/>
           </div>
           <div className='login-right-container'>
             <div className='login-text-container'>
