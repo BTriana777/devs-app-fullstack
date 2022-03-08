@@ -27,7 +27,6 @@ export const HomeScreen = () => {
     }
     getPost();
   }, [setDataPost])
-  console.log(dataPost);
   
 
   //Fucnion para agregar post

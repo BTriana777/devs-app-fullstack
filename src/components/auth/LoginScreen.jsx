@@ -1,58 +1,43 @@
-import React, { useContext, useEffect } from 'react';
-import { getAuth, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import React, { useContext } from 'react';
+import { getAuth, signInWithPopup } from "firebase/auth";
 import { provider, db } from '../../firebase/firebase';
 import {doc, getDoc  } from "firebase/firestore";
 
 import '../../styles/loginScreen.css'
 import { AuthContext } from './AuthContext';
-import { useNavigate } from 'react-router-dom';
 
 export const LoginScreen = ({setChecking}) => {
   
-  const navigate = useNavigate();
   const {user, setUser} = useContext(AuthContext);
 
-  // useEffect(() => {
-
-  //   const auth = getAuth();
-  //       onAuthStateChanged(auth, (user) =>{
-  //           console.log(user);
-  //       })
-  
-  // }, []);
-  
+  //funcion para setear el state user dependiendo si ya se habia registrado
   const changeUser = (docSnap, singIn) => {
     if(docSnap.data()?.name){
        setUser({
-        ...user,
         name: docSnap.data().name,
         color: docSnap.data().color,
         uid: singIn.user.uid,
+        logged: true
       });
     } else {
       setUser({
         ...user,
         uid: singIn.user.uid,
+        logged: true
       })
     }
   }
 
   const startGoogleLogin = async() => {
-    const auth = getAuth();
     setChecking(true);
+    const auth = getAuth();
     try {
       const singIn = await signInWithPopup(auth, provider)
       const docSnap = await getDoc(doc(db, "users", `${auth.currentUser.uid}`))
       changeUser(docSnap, singIn)
-      .then(() => {
-      setUser({
-        ...user,
-        logged: true
-      })})
     } catch (error) {
       console.error("idk", error);
     }
-    setChecking(false)
   }
 
   return(

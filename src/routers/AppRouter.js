@@ -2,6 +2,8 @@ import React, {useContext, useEffect, useState} from 'react';
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import {db} from '../firebase/firebase'
 
 import { AuthContext } from '../components/auth/AuthContext';
 import { HomeScreen } from '../components/home/HomeScreen';
@@ -18,14 +20,20 @@ export const AppRouter = () => {
 
   useEffect(() => {
     
+    //se evalua si el usuario ya se encuentra loggeado y setea el state user
     const auth = getAuth();
-    onAuthStateChanged(auth, (useer) =>{
+    onAuthStateChanged(auth, async(useer) =>{
       if(useer?.uid){
-        setUser({
-          ...user,
-          uid: useer.uid,
-          logged: true
+        getDoc(doc(db, "users", `${useer.uid}`))
+        .then((dataUser)=>{
+          setUser({
+            uid: useer.uid,
+            logged: true,
+            name: dataUser.data().name,
+            color: dataUser.data().color
+          })
         })
+        
       }
       setChecking(false);
     })
