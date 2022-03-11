@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/devs-app-fullstack/static/css/main.c6ea603c.css",
-    "main.js": "/devs-app-fullstack/static/js/main.656d004f.js",
+    "main.js": "/devs-app-fullstack/static/js/main.0f23658a.js",
     "index.html": "/devs-app-fullstack/index.html",
     "main.c6ea603c.css.map": "/devs-app-fullstack/static/css/main.c6ea603c.css.map",
-    "main.656d004f.js.map": "/devs-app-fullstack/static/js/main.656d004f.js.map"
+    "main.0f23658a.js.map": "/devs-app-fullstack/static/js/main.0f23658a.js.map"
   },
   "entrypoints": [
     "static/css/main.c6ea603c.css",
-    "static/js/main.656d004f.js"
+    "static/js/main.0f23658a.js"
   ]
 }
