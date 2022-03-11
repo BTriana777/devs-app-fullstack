@@ -17,3 +17,10 @@ body{
 .text-devs-beta span{
     color: #f50d5a;
 }
+
+@media (max-width: 420px) {
+    .text-devs-beta{
+        font-size: 10px;
+        margin-top: 50px;
+    }
+}

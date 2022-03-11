@@ -121,3 +121,49 @@
     background-color: #61dda3;
     transform: scale(1.01);
 }
+
+@media (max-width: 420px) {
+    .welcome-left-container img{
+        width: 60%;
+    }
+    .welcome-container{
+        flex-direction: column;
+    }
+    .welcome-left-container{
+        width: 100%;
+        height: 40vh;
+    }
+    .welcome-right-container{
+        width: 100%;
+        height: 60vh;
+    }
+    .welcome-container-right-all{
+        align-items: center;
+        justify-content: center;
+    }
+    .welcome-title-container{
+        font-size: 25px;
+        text-align: center;
+    }
+    .welcome-input{
+        width: 85%;
+        font-size: 18px;
+    }
+    .welcome-select-color-container{
+        width: 80%;
+        margin-bottom: 30px;
+    }
+    .welcome-select-color-container p{
+        font-size: 18px;
+    }
+    .color-container{
+        margin-top: 10px;
+    }
+    .color-box{
+        width: 40px;
+        height: 40px;
+    }
+    .text-devs-beta{
+        margin-top: 50px;
+    }
+}

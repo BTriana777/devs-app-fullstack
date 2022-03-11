@@ -3,13 +3,28 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    height: 100vh;
+}
+.container{
+    display: flex;
+    flex-direction: column  ;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
 }
 .loading-main-container img:first-child{
-    width: auto
+    width: 70%
 }
 .loading-main-container img:last-child{
-    width: auto;
+    width: 70%;
     margin-top: 22px;
 }
 
+@media (max-width: 420px) {
+    .container{
+        width: 100%;
+    }
+    .loading-main-container img{
+        width: 200px;
+    }
+}

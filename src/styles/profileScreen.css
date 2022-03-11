@@ -90,3 +90,13 @@ header{
     background-color: #60265B;
     color: #150714;
 }
+
+
+@media (max-width: 420px) {
+    header, .profile-post-favorites-container{
+        width: 90%;
+    }
+    .btn-profile{
+        font-size: 18px;
+    }
+}

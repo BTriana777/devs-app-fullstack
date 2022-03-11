@@ -114,3 +114,18 @@
     width: 40%;
     align-self: center;
 }
+
+@media (max-width: 420px) {
+    .home-header-container, .form-container,.home-post-container{
+        width: 90%;
+    }
+    .home-text-button-container textarea{
+        font-size: 14px;
+    }
+    .home-text-button-container span{
+        font-size: 10px;
+    }
+    .home-text-button-container button{
+        font-size: 18px;
+    }
+}

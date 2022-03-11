@@ -16,12 +16,12 @@ body{
     justify-content: center;
     width: 50%;
 }
+.login-img-text{
+    margin-top: 35px;
+}
 
 .login-right-container{
     width: 50%;
-}
-.login-img-text{
-    margin-top: 35px;
 }
 .login-text-container{
     align-items: center;
@@ -35,7 +35,6 @@ body{
     font-size: 50px;
     font-weight: bold;
     font-family: 'Silkscreen', sans-serif;
-    letter-spacing: -0.333333px;
     margin-bottom: 37px;
 }
 .login-text-p{
@@ -86,4 +85,35 @@ body{
     justify-content: center;
     height: 42px;
     width: 90%;
+}
+
+@media (max-width: 420px) {
+    .login-container{
+        flex-direction: column;
+        height: 100vh;
+    }
+    .login-left-container, .login-right-container{
+        width: 100%;
+        height: 50%;
+    }
+    .login-left-container img{
+        width: 200px;
+    }
+    .login-text-container{
+        width: 100%;
+    }
+    .login-text-container h1{
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+    .login-text-p{
+        font-size: 14px;
+        text-align: center;
+    }
+    .google-btn{
+        width: 80%;
+    }
+    .btn-text{
+        font-size: 14px;
+    }
 }

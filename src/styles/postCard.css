@@ -63,3 +63,12 @@
     margin-bottom: 26px;
     transition: 1s;
 }
+
+@media (max-width: 420px) {
+    .box-username-post, .user-date{
+        font-size: 14px;
+    }
+    .content-text{
+        font-size: 12px;
+    }
+}
