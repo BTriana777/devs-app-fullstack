@@ -5,14 +5,14 @@ import { getAuth } from '@firebase/auth';
 
 
 import '../../styles/postCard.css'
-import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 
 export const PostCard = ({name, color, date, content, like, user, id, setDataPost, dataPost}) => {
     const {uid} = getAuth().currentUser;      
 
     //Socket para escuchar actualicaciones en database
-    const updateData = () => {
+    const updateDataLike = () => {
         onSnapshot(doc(db, "post", `${id}`), (doc) => {
             const index = dataPost.findIndex(elem => elem.id === id);
             const post = dataPost[index];
@@ -20,8 +20,15 @@ export const PostCard = ({name, color, date, content, like, user, id, setDataPos
             const newArray = dataPost.slice();
             newArray.splice(index, 1, postEdit)
             setDataPost(newArray)
-
         });
+    }
+    const updateDataDelete = () => {
+        onSnapshot(doc(db, "post", `${id}`), (doc) => {
+            const index = dataPost.findIndex(elem => elem.id === id);
+            const newArray = dataPost.slice();
+            newArray.splice(index, 1)
+            setDataPost(newArray)
+        })
     }
 
     //funcion para Like
@@ -35,7 +42,12 @@ export const PostCard = ({name, color, date, content, like, user, id, setDataPos
             //Dar Like
             updateDoc(doc(db, "post", `${id}`), {like: [...like, uid]})
         }
-        updateData();
+        updateDataLike();
+    }
+
+    const handleDeletePost = async() => {
+        updateDataDelete();
+        await deleteDoc(doc(db, "post", `${id}`));
     }
 
 
@@ -49,7 +61,7 @@ export const PostCard = ({name, color, date, content, like, user, id, setDataPos
                         <p>{moment(date).format('- D MMM.')}</p>
                     </div>
                     {
-                        (uid===user)? <img src='./img/Vector.png' alt='delete'/> : <></>
+                        (uid===user)? <img src='./img/Vector.png' alt='delete' onClick={handleDeletePost}/> : <></>
                     }
                 </div>
                 <p className="content-text">
