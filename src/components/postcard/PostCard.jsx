@@ -1,17 +1,17 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import moment from 'moment';
 
 import { getAuth } from '@firebase/auth';
 
 
 import '../../styles/postCard.css'
-import { doc, getDoc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 
 export const PostCard = ({name, color, date, content, like, user, id, setDataPost, dataPost}) => {
     const {uid} = getAuth().currentUser;      
 
-    //Socket para ecuchar actualicaciones en database
+    //Socket para escuchar actualicaciones en database
     const updateData = () => {
         onSnapshot(doc(db, "post", `${id}`), (doc) => {
             const index = dataPost.findIndex(elem => elem.id === id);

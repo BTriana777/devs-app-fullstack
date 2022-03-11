@@ -14,6 +14,7 @@ export const ProfileScreen = () => {
         post: true,
         favo: false
     }) 
+    const [btnChange, setBtnChange] = useState(true)
 
     //codigo para simplificar
     const [dataPost, setDataPost] = useState([]);
@@ -34,9 +35,11 @@ export const ProfileScreen = () => {
         }else{
             const getPost = async() => {
             let dataArray = [];
-            const docSnap = await getDocs(query(collection(db, "post"), where("user", "==", user.uid)));
+            const docSnap = await getDocs(collection(db, "post"));
             docSnap.forEach((doc) => {
-                dataArray.push(doc.data())
+                if(doc.data().like.includes(user.uid)){
+                    dataArray.push(doc.data())
+                }
             });
             setDataPost(dataArray);
             }
@@ -68,7 +71,6 @@ export const ProfileScreen = () => {
             ...btnClass,
             [target.id]: true
         })
-
     }
   return (
     <div className='profile-main-container'>
