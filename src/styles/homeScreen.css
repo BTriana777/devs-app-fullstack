@@ -27,6 +27,14 @@
     height: 14px;
 }
 
+.black-form{
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 218px;
+    position: absolute;
+    width: 100%;
+    top: 52px;
+}
+
 .home-back{
     display: flex;
     justify-content: center;
@@ -84,10 +92,22 @@
     font-family: Silkscreen;
     font-weight: bold;
     font-size: 20px;
-    background: #2F112D;
     border: none;
     padding: 8px 20px;
     margin-top: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.home-text-button-container button:hover{
+    background-color: #00DA76;
+    color: #fff;
+}
+.off-btn{
+    background: #2F112D;
+}
+.active-btn{
+    background-color: #00DA76;
+    color: #fff;
 }
 
 .home-post-container{

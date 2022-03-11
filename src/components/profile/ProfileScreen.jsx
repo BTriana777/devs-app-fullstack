@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 import { PostCard } from '../postcard/PostCard';
+import { LoadingScreen } from '../loading/LoadingScreen';
 
 export const ProfileScreen = () => {
     const navigate = useNavigate()
@@ -13,15 +14,15 @@ export const ProfileScreen = () => {
     const [classBtn, setClassBtn] = useState({
         post: true,
         favo: false
-    }) 
-    const [btnChange, setBtnChange] = useState(true)
+    })
+    const [loadingPost, setloadingPost] = useState(true)
 
     //codigo para simplificar
     const [dataPost, setDataPost] = useState([]);
 
     //funcion para traer post
     useEffect(() => {
-
+        setloadingPost(true)
         if(classBtn.post === true){
             const getPost = async() => {
             let dataArray = [];
@@ -30,6 +31,7 @@ export const ProfileScreen = () => {
                 dataArray.push(doc.data())
             });
             setDataPost(dataArray);
+            setloadingPost(false)
             }
             getPost();
         }else{
@@ -41,10 +43,11 @@ export const ProfileScreen = () => {
                     dataArray.push(doc.data())
                 }
             });
+            setloadingPost(false)
             setDataPost(dataArray);
             }
             getPost();
-    }
+        }
     }, [setDataPost, classBtn])
 
     const handleLogout = async() => {
@@ -108,20 +111,29 @@ export const ProfileScreen = () => {
                 </div>
             </div>
         </div>
-        <div className="home-post-container">
-            {
-                dataPost.map(({name, color, date, content, like, user}) => (
-                    <PostCard 
+        {
+          !loadingPost?
+            <div className='home-post-container'>
+              {
+                dataPost.map(({name, color, date, content, like, user, id}) => (
+                  <PostCard 
                     name={name} 
                     color={color}
                     date={date}
                     content={content}
                     like={like}
                     user={user}
-                    />
+                    key={id}
+                    id={id}
+                    dataPost={dataPost}
+                    setDataPost={setDataPost}
+                  />
                 ))
-            }
-        </div>
+              }
+            </div>
+          :
+          <LoadingScreen />
+        }
     </div>
   )
 }

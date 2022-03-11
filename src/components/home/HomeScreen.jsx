@@ -8,12 +8,15 @@ import { addDoc, collection, doc, getDocs, updateDoc} from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 import { PostCard } from '../postcard/PostCard';
 import '../../styles/homeScreen.css'
+import { LoadingScreen } from '../loading/LoadingScreen';
   
 export const HomeScreen = () => {
   const navigate = useNavigate();
   const {user} = useContext(AuthContext)
   const [form, setForm] = useState("")
   const [barProgress, setbarProgress] = useState(0)
+  const [loadingPost, setloadingPost] = useState(true)
+  const [formBlock, setFormBlock] = useState(false)
 
   //codigo para simplificar
   const [dataPost, setDataPost] = useState([]);
@@ -27,13 +30,15 @@ export const HomeScreen = () => {
         dataArray.push(doc.data())
       });
       setDataPost(dataArray);
+      setloadingPost(false);
     }
     getPost();
-  }, [setDataPost])
+  }, [setDataPost, setloadingPost])
   
 
   //Fucnion para agregar post
   const handleAddPost = async(e) => {
+    setFormBlock(true);
     e.preventDefault()
     const {uid} = getAuth().currentUser;
     try{
@@ -52,7 +57,9 @@ export const HomeScreen = () => {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+    setFormBlock(false);
     setForm('');
+    setbarProgress(0);
   }
 
   
@@ -66,6 +73,7 @@ export const HomeScreen = () => {
       {replace: true})
   }
 
+  console.log(loadingPost);
   //Todo: hacer borde de color que escoja el usuario
   return (
     <div className='home-main-container'>
@@ -80,6 +88,9 @@ export const HomeScreen = () => {
             <img className='logo-header' src="./img/logo.png" alt="./img/logo"/>
             <img className='letter-header' src="./img/letterlogo.png" alt="./img/letterlogo" />
         </div>
+
+        {formBlock && <div className='black-form' />}
+
         <div className='home-back'>
           <div className='form-container'>
             <img src="./img/ornacia.png" alt="./img/ornacia.png" />
@@ -96,28 +107,35 @@ export const HomeScreen = () => {
                 style={{width: barProgress+'%'}}
               ></div>
               <span>200 max.</span>
-              <button onClick={handleAddPost}>POST</button>
+              <button className={formBlock? "active-btn" : "off-btn"} onClick={handleAddPost}>POST</button>
             </form>
           </div>
         </div>
-        <div className='home-post-container'>
-          {
-            dataPost.map(({name, color, date, content, like, user, id}) => (
-              <PostCard 
-                name={name} 
-                color={color}
-                date={date}
-                content={content}
-                like={like}
-                user={user}
-                key={id}
-                id={id}
-                dataPost={dataPost}
-                setDataPost={setDataPost}
-              />
-            ))
-          }
-        </div>
+
+        {
+          !loadingPost?
+            <div className='home-post-container'>
+              {
+                dataPost.map(({name, color, date, content, like, user, id}) => (
+                  <PostCard 
+                    name={name} 
+                    color={color}
+                    date={date}
+                    content={content}
+                    like={like}
+                    user={user}
+                    key={id}
+                    id={id}
+                    dataPost={dataPost}
+                    setDataPost={setDataPost}
+                  />
+                ))
+              }
+            </div>
+          :
+          <LoadingScreen />
+        }
+
     </div>
   )
 }

@@ -51,6 +51,7 @@
 .like-container{
     display: flex;
     font-weight: 450;
+    width: 50px;
     font-size: 16px;
     color: #FFFFFF;
     cursor: pointer;
@@ -60,4 +61,5 @@
     height: 20px;
     margin-right: 12px;
     margin-bottom: 26px;
+    transition: 1s;
 }
