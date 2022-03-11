@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/devs-app-fullstack/static/css/main.c6ea603c.css",
+    "main.js": "/devs-app-fullstack/static/js/main.de7eb22c.js",
+    "index.html": "/devs-app-fullstack/index.html",
+    "main.c6ea603c.css.map": "/devs-app-fullstack/static/css/main.c6ea603c.css.map",
+    "main.de7eb22c.js.map": "/devs-app-fullstack/static/js/main.de7eb22c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c6ea603c.css",
+    "static/js/main.de7eb22c.js"
+  ]
+}
