@@ -6,7 +6,7 @@ import { AuthContext } from '../components/auth/AuthContext';
  
 export const PublicRoute = ({isAuth,  children }) => {
     const {user} = useContext(AuthContext)
-    return isAuth ? ( user.name? <Navigate to="/" /> : <Navigate to='/welcome' />) : children;
+    return isAuth ? ( user.name? <Navigate to="/devs-app-fullstack/" /> : <Navigate to='/devs-app-fullstack/welcome' />) : children;
 };
  
 PublicRoute.propTypes = {

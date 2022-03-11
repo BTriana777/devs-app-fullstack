@@ -61,7 +61,7 @@ export const ProfileScreen = () => {
         })
     }
     const handleClickBack = () => {
-        navigate('/', {
+        navigate('/devs-app-fullstack/', {
             replace: true
         })
     }

@@ -50,24 +50,24 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
         <Routes>
-        <Route path='/profile' element={
+        <Route path='/devs-app-fullstack/profile' element={
           <PrivateRoute isAuth={user.logged}>
             <ProfileScreen />
           </PrivateRoute>
         } />
-        <Route path='/' element={
+        <Route path='/devs-app-fullstack/' element={
           <PrivateRoute isAuth={user.logged}>
             <HomeScreen />
           </PrivateRoute>
         } />
-        <Route path='/welcome' element={<WelcomeScreen />} />
+        <Route path='/devs-app-fullstack/welcome' element={<WelcomeScreen />} />
 
-        <Route path="/login" element={
+        <Route path="/devs-app-fullstack/login" element={
           <PublicRoute isAuth={user.logged}>
             <LoginScreen setChecking={setChecking} />
           </PublicRoute>
         } />
-        <Route path='*' element={<Navigate to='/' />}/>
+        <Route path='*' element={<Navigate to='/devs-app-fullstack/' />}/>
       </Routes>
     </BrowserRouter>
   )

@@ -69,7 +69,7 @@ export const HomeScreen = () => {
     setbarProgress(target.value.length/2);
   }
   const handleClickProfile = () =>{
-    navigate('/profile',
+    navigate('/devs-app-fullstack/profile',
       {replace: true})
   }
 
@@ -81,7 +81,7 @@ export const HomeScreen = () => {
             <img 
               className='img-header' 
               src="./img/ornacia.png" 
-              alt="./img/ornacia"
+              alt="ornacia"
               style={{borderColor: user.color}}
               onClick={handleClickProfile}
             />
