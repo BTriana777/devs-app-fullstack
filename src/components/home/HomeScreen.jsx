@@ -3,9 +3,10 @@ import { AuthContext } from '../auth/AuthContext'
 
 import {db} from '../../firebase/firebase'
 import { getAuth } from '@firebase/auth';
-import { addDoc, collection, getDocs, query  } from "firebase/firestore";
+import { addDoc, collection, doc, getDocs, updateDoc} from "firebase/firestore";
 
 import { useNavigate } from 'react-router-dom';
+import { PostCard } from '../postcard/PostCard';
 import '../../styles/homeScreen.css'
   
 export const HomeScreen = () => {
@@ -13,6 +14,8 @@ export const HomeScreen = () => {
   const {user} = useContext(AuthContext)
   const [form, setForm] = useState("")
   const [barProgress, setbarProgress] = useState(0)
+
+  //codigo para simplificar
   const [dataPost, setDataPost] = useState([]);
   
   //funcion para traer post
@@ -21,7 +24,7 @@ export const HomeScreen = () => {
       let dataArray = [];
       const docSnap = await getDocs(collection(db, "post"));
       docSnap.forEach((doc) => {
-        dataArray.push([doc.data()])
+        dataArray.push(doc.data())
       });
       setDataPost(dataArray);
     }
@@ -42,13 +45,17 @@ export const HomeScreen = () => {
         date: new Date().getTime(),
         like: []
       });
-
+      await updateDoc(doc(db, "post", `${docRef.id}`), {
+        id: docRef.id
+      })
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
     setForm('');
   }
+
+  
 
   const handelInputChange = ({target}) => {
     setForm(target.value);
@@ -94,7 +101,22 @@ export const HomeScreen = () => {
           </div>
         </div>
         <div className='home-post-container'>
-
+          {
+            dataPost.map(({name, color, date, content, like, user, id}) => (
+              <PostCard 
+                name={name} 
+                color={color}
+                date={date}
+                content={content}
+                like={like}
+                user={user}
+                key={id}
+                id={id}
+                dataPost={dataPost}
+                setDataPost={setDataPost}
+              />
+            ))
+          }
         </div>
     </div>
   )

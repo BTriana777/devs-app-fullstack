@@ -1,0 +1,63 @@
+@import url('http://fonts.cdnfonts.com/css/silkscreen');
+
+.main-container{
+    display: flex;
+    width: 100%;
+    margin-top: 30px;
+    border-bottom: 2px solid #60265B;
+}
+.img-ornacia{
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+}
+.post-username-main-container{
+    width: 100%;
+    font-family: Fira Code;
+    margin-left: 18px;
+}
+.user-date-delete-container{
+    display: flex;
+    justify-content: space-between;
+}
+.user-date-delete-container img{
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+.user-date{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 450;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+.box-username-post{
+    font-family: Silkscreen;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 2px;
+    margin-right: 12px;
+    color: #2E132C;
+}
+.content-text{
+    font-weight: 450;
+    font-size: 18px;
+    color: #FFFFFF;
+    margin: 17px 0 20px 0;
+
+}
+.like-container{
+    display: flex;
+    font-weight: 450;
+    font-size: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.like-container img{
+    width: 24px;
+    height: 20px;
+    margin-right: 12px;
+    margin-bottom: 26px;
+}

@@ -33,8 +33,9 @@
     width: 100%;
     height: 218px;
     background: #150714;
+    border-bottom: 3px solid #60265B;
 }
-.form-container{
+.form-container{    
     display: flex;
     width: 40%;
 }
@@ -87,4 +88,9 @@
     border: none;
     padding: 8px 20px;
     margin-top: 6px;
+}
+
+.home-post-container{
+    width: 40%;
+    align-self: center;
 }
