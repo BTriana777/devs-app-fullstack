@@ -1,8 +1,8 @@
 {
-  "name": "sprint-four-app-fullstack",
+  "name": "devs-app-fullstack",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://btriana777.github.io/devs-app-fullstack",
+  "homepage": "https://btriana777.github.io/devs-app-fullstack/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
