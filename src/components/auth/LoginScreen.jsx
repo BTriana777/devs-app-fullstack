@@ -42,10 +42,10 @@ export const LoginScreen = ({ setChecking }) => {
   return (
     <div className="login-container">
       <div className="login-left-container">
-        <img src="./img/logo.png" alt="logo" />
+        <img src="../img/logo.png" alt="logo" />
         <img
           className="login-img-text"
-          src="./img/letterlogo.png"
+          src="../img/letterlogo.png"
           alt="logo"
         />
       </div>

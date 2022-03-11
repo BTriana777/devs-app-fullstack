@@ -68,8 +68,8 @@ export const WelcomeScreen = () => {
   return (
     <div className='welcome-container'>
       <div className='welcome-left-container'>
-        <img src='./img/logo.png' alt='logo'/>
-        <img src='./img/letterlogo.png' alt='logo'/>
+        <img src='../img/logo.png' alt='logo'/>
+        <img src='../img/letterlogo.png' alt='logo'/>
       </div>
       <div className='welcome-right-container'>
         <div className='welcome-container-right-all'>
